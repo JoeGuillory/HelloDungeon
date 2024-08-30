@@ -92,66 +92,73 @@ namespace HelloDungeon
             if(playerRole == "Wizard")
             {
 
+               input = GetInput("As you enter the dungeon you run into your first option. There are two doors before you. Which do you choose.", "1 Left", "2 Right");
+
+
                 // First Option
-
-                GetInput("As you enter the dungeon you run into your first option. There are two doors before you. Which do you choose.", "1 Left", "2 Right");
-                    
-                    
-
-            if (input == 1)
-                    {
+                if (input == 1)
+                {
                         Console.WriteLine("You find a old wooden staff. As you knock off the dust you feel stronger");
                         playerMagicDamage += 5;
                         Console.WriteLine();
                         Console.WriteLine("Magic damage: " + playerMagicDamage);
                         
-            }
-            else if (input == 2)
-            {
-                        Console.WriteLine("How unlucky. You find yourself faced with a goblin. Do you coward in fear or fight it head on.");
-                        Console.WriteLine(" 1 Coward like a baby | 2 Fight it head on ");
-                        goblinEncounter = true;
-            }
+                }
+                else if (input == 2)
+                {
+                    
+                    input = GetInput("How unlucky. You find yourself faced with a goblin. Do you coward in fear or fight it head on", "Coward in fear", "Fight is head on");
+                    goblinEncounter = true;
+                }
                 
                
                 //Door 1
-            if (goblinEncounter == false)
-            {
+                if (goblinEncounter == false)
+                {
                 Console.WriteLine();
                 Console.WriteLine("You take a easy stroll to the next door");
-            }
+                }
                 //Door 2
-            else if (goblinEncounter == true)
+                else if (goblinEncounter == true)
                 {
                 
                     if (input == 1)
                     {
-                     Console.WriteLine("As you duck in fear the golbin jumps over you and falls into a unexpected cavern that reaches deeper into the cave.");
-                     Console.WriteLine("You hear the voice of the goblin grow more and more distance as it falls.");
-                     Console.WriteLine("You survive the encounter");
+                        Console.WriteLine("As you duck in fear the golbin jumps over you and falls into a unexpected cavern that reaches deeper into the cave.");
+                        Console.WriteLine();
+                        Console.WriteLine("You hear the voice of the goblin grow more and more distance as it falls.");
+                        Console.WriteLine();
+                        Console.WriteLine("You survive the encounter");
 
                     }
                     else if (input == 2)
                     {
-                     Console.WriteLine("You try your best to fight the goblin but you remembered that you have no weapons.");
-                     Console.WriteLine();
-                     Console.WriteLine("You are defeated");
-                     isDead = true;
+                        Console.WriteLine("You try your best to fight the goblin but you remembered that you have no weapons.");
+                        Console.WriteLine();
+                        Console.ReadKey();
+                        Console.WriteLine("You are defeated");
+                        Console.ReadKey();
+                        isDead = true;
                     }
 
                 }
+                // Player death choice
+                if (isDead == true)
+                {
+                    input = GetInput("Would you like to try again", "Yes", "No");
+
+                    if (input == 1)
+                    {
+                        Console.Clear();
+                        Run();
+                    }
+                    else if (input == 2)
+                    {
+                       
+                    }
+                }
               
-                   
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
+
               // End of wizard Path
             }
 
@@ -172,6 +179,7 @@ namespace HelloDungeon
 
 
         }
+        // Get the input from Player
         int GetInput(string description, string option1, string option2)
         {
             string input = "";
@@ -214,6 +222,7 @@ namespace HelloDungeon
 
         }
 
+       
 
     }
 }
