@@ -277,7 +277,7 @@ namespace HelloDungeon
             int heal = 7;
             
 
-            while (monster.health != 0 | monster.health <= 0)
+            while (monster.health != 0)
             {
                 Displaystats(player);
                 Displaystats(monster);
@@ -288,7 +288,16 @@ namespace HelloDungeon
 
                 if (input == 1)
                 {
-                    monster.health -= (player.damage - monster.armor);
+                    float damage = player.damage - monster.armor;
+                      if (monster.health < 0)
+                    {
+                        monster.health = 0;
+                    }
+                    else
+                    {
+                        monster.health -= damage;
+
+                    }
 
                 }
                 else if (input == 2)
