@@ -203,7 +203,7 @@ namespace HelloDungeon
             string input = "";
             int inputRecieved = 0;
             // Input loop
-            while (inputRecieved != 1 && inputRecieved != 2)
+            while (inputRecieved != 1 && inputRecieved != 2 && inputRecieved !=3)
             {
                 // Print options
                 Console.WriteLine(description);
@@ -312,12 +312,7 @@ namespace HelloDungeon
                     player.health += heal;
 
                 }
-                else
-                {
-
-
-
-                }
+                
                 Console.Clear();
                 
 
