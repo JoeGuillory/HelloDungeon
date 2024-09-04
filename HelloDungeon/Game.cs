@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Security;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
@@ -87,6 +88,7 @@ namespace HelloDungeon
             Console.WriteLine("Armor: " + player1.armor);
             Console.WriteLine("Mana: " + player1.mana);
             Console.WriteLine("Gold: " + player1.gold);
+            Console.WriteLine();
             
             int input = GetInput("Are you a warrior or a wizard?", "Warrior", "Wizard");
             
@@ -135,7 +137,7 @@ namespace HelloDungeon
                
             }
             Console.WriteLine();
-            Console.WriteLine("As you walk through your are faced with your first battle");
+            Console.WriteLine("As you walk through you are faced with your first battle");
             Console.ReadKey();
             Console.Clear();
             Console.WriteLine("A goblin has appeared");
@@ -272,10 +274,10 @@ namespace HelloDungeon
             Player battleresults = new Player("hehe",0,0,0,0,0,"none");
             int input;
             int defend = 5;
-
+            int heal = 7;
             
 
-            while (monster.health != 0 | monster.health !<= 0)
+            while (monster.health != 0 | monster.health <= 0)
             {
                 Displaystats(player);
                 Displaystats(monster);
@@ -289,14 +291,31 @@ namespace HelloDungeon
                     monster.health -= (player.damage - monster.armor);
 
                 }
-                else if(input == 2)
+                else if (input == 2)
                 {
-                    player.health -= (monster.damage - player.armor - defend);
+                    float damage = monster.damage - player.armor - defend;
+                    if(damage < 0)
+                    {
+                        damage = 0;
+                    }
+                    else
+                    {
+                       damage = (monster.damage - player.armor - defend);
+
+                    }
+                    player.health -= damage;
+                    
                 }
                 else if (input == 3)
                 {
 
-                    player.health += 7;
+                    player.health += heal;
+
+                }
+                else
+                {
+
+
 
                 }
                 Console.Clear();
