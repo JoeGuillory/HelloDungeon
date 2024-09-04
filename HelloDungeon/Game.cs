@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HelloDungeon
@@ -72,11 +73,11 @@ namespace HelloDungeon
             Weapon greatsword = new Weapon(16);
             //Enemies
             Enemy goblin = new Enemy("Goblin", 15, 3, 4);
+            
 
             //Player
-            Player player1 = new Player("Scarletta", 50, 5, 3, 5, 5, "");
-            float attack = player1.damage;
-            float defend = 5;
+           Player player1 = new Player("Scarletta", 50, 5, 3, 5, 5, "");
+            int defend = 5;
            
           
             Console.WriteLine("Hello, " + player1.name);
@@ -118,9 +119,6 @@ namespace HelloDungeon
                 Console.WriteLine("Player Role: " + player1.role);
                 Console.WriteLine("Magic damage: " + player1.damage);
                 Console.WriteLine();
-                Console.WriteLine("Oh one more thing i forgot to tell you. It is not that important but you do not have a weapon.");
-                Console.WriteLine("You must have been an apprentice");
-                Console.WriteLine("I believe you will make it out alive. *Cough* *Cough*");
 
             }
             else if (player1.role == "Warrior")
@@ -141,26 +139,38 @@ namespace HelloDungeon
             Console.ReadKey();
             Console.Clear();
             Console.WriteLine("A goblin has appeared");
-
-            while(goblin.health != 0 || goblin.health >=0)
+            //First encounter
+            Displaystats(player1);
+            Console.ReadKey();
+            
+            while (goblin.health != 0 || goblin.health >= 0)
             {
-                
+                Attackrequest();
+                if (input == 1)
+                {
+                    goblin.health -= (player1.damage - goblin.armor);
+
+                }
+                else if (input == 2)
+                {
+                    player1.health -= (goblin.damage - player1.armor + defend);
+
+                }
+                else if (input == 3)
+                {
+                    player1.health += 5;
+
+                }
+
+
 
 
 
 
 
             }
-
-
-           
-
             
-
-
-
-
-
+          
 
 
         }
@@ -210,7 +220,7 @@ namespace HelloDungeon
         }
         
         /// <summary>
-        /// Input for battle encounters
+        /// Get a 3 option choice from player
         /// </summary>
         int GetInput(string description, string option1, string option2, string option3)
         {
@@ -279,31 +289,38 @@ namespace HelloDungeon
             }
             return request;
         }
-
+        /// <summary>
+        /// Battlesystem that will allow you to fight a monster
+        /// </summary>
+        /// <returns></returns>
         int Attackrequest()
         {
+            
             int input;
             input = GetInput("Select", "Attack", "Defend", "Heal");
 
-            if (input == 1)
-            {
 
+            return input;
 
-            }
-            else if (input == 2)
-            {
+            
 
-
-            }
-            else if (input == 3)
-            {
-
-
-            }
-
-            return input ;
         }
+        int Displaystats(Player player1)
+        {
+            
+            int nothing = 0;
+            Console.WriteLine();
+            Console.WriteLine("Health: " + player1.health);
+            Console.WriteLine("Armor: " + player1.armor);
+            Console.WriteLine("Mana: " + player1.mana);
+            Console.WriteLine("Gold: " + player1.gold);
+            Console.WriteLine("Player Role: " + player1.role);
+            Console.WriteLine("Magic damage: " + player1.damage);
 
+
+
+            return nothing;
+        }
 
        
 
