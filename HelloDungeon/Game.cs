@@ -9,76 +9,93 @@ namespace HelloDungeon
 {
     internal class Game
     {
+        struct Player
+        {
+            public string name;
+            public float health;
+            public float mana;
+            public int gold;
+            public float armor;
+            public float magicDamage;
+            public float meleeDamage;
+            public string role;
+            public  Player(string name, float health, float mana, int gold, float armor, float magicDamage, float meleeDamage, string role)
+                    {
+                     this.name = name;
+                     this.health = health;
+                     this.mana = mana;
+                     this.gold = gold;
+                     this.armor = armor;
+                     this.magicDamage = magicDamage;
+                     this.meleeDamage = meleeDamage;
+                     this.role = role;
+                   
+                    }
+        }
         public void Run()
         {
-            string playerName = "Boblius";
-            float playerHealth = 10.0f;
-            float playerMana = 5.0f;
-            int playerGold = 3;
-            float playerArmor = 5.0f;
-            float playerMagicDamage = 5.0f;
-            float playerMeleeDamage = 5.0f;
-            string playerRole = "Warrior";
+            Player player1 = new Player("Bob", 10, 5, 3, 5, 5, 5, "");
+            
             bool goblinEncounter = false;
             bool isDead = false;
             
           
-            Console.WriteLine("Hello, " + playerName);
+            Console.WriteLine("Hello, " + player1.name);
             Console.WriteLine("Welcome to my dungeon!");
             Console.WriteLine();
-            Console.WriteLine("Health: " + playerHealth);
-            Console.WriteLine("Armor: " + playerArmor);
-            Console.WriteLine("Mana: " + playerMana);
-            Console.WriteLine("Gold: " + playerGold);
+            Console.WriteLine("Health: " + player1.health);
+            Console.WriteLine("Armor: " + player1.armor);
+            Console.WriteLine("Mana: " + player1.mana);
+            Console.WriteLine("Gold: " + player1.gold);
             
             int input = GetInput("Are you a warrior or a wizard?", "Warrior", "Wizard");
             
             
             if (input == 1)
             {
-                    playerRole = "Warrior";
-                    playerHealth += 3; 
-                    playerMana -= 2;
-                    playerArmor += 5;
-                    playerMagicDamage -= 4;
+                    player1.role = "Warrior";
+                    player1.health += 3; 
+                    player1.mana -= 2;
+                    player1.armor += 5;
+                    player1.magicDamage -= 4;
             }
             else if (input == 2)
             {
-                    playerRole = "Wizard";
-                    playerHealth -= 3;
-                    playerMana += 5;
-                    playerArmor -= 2;
-                    playerMeleeDamage -= 4;
+                    player1.role = "Wizard";
+                    player1.health -= 3;
+                    player1.mana += 5;
+                    player1.armor -= 2;
+                    player1.meleeDamage -= 4;
             }
 
-            if (playerRole == "Wizard")
+            if (player1.role == "Wizard")
             {
                 Console.WriteLine("Here are your new stats");
                 Console.WriteLine();
-                Console.WriteLine("Health: " + playerHealth);
-                Console.WriteLine("Armor: " + playerArmor);
-                Console.WriteLine("Mana: " + playerMana);
-                Console.WriteLine("Gold: " + playerGold);
-                Console.WriteLine("Player Role: " + playerRole);
-                Console.WriteLine("Magic damage: " + playerMagicDamage);
-                Console.WriteLine("Melee damage:" + playerMeleeDamage);
+                Console.WriteLine("Health: " + player1.health);
+                Console.WriteLine("Armor: " + player1.armor);
+                Console.WriteLine("Mana: " + player1.mana);
+                Console.WriteLine("Gold: " + player1.gold);
+                Console.WriteLine("Player Role: " + player1.role);
+                Console.WriteLine("Magic damage: " + player1.magicDamage);
+                Console.WriteLine("Melee damage:" + player1.meleeDamage);
                 Console.WriteLine();
                 Console.WriteLine("Oh one more thing i forgot to tell you. It is not that important but you do not have a weapon.");
                 Console.WriteLine("You must have been an apprentice");
                 Console.WriteLine("I believe you will make it out alive. *Cough* *Cough*");
 
             }
-            else if (playerRole == "Warrior")
+            else if (player1.role == "Warrior")
             {
                 Console.WriteLine("Here are your new stats");
                 Console.WriteLine();
-                Console.WriteLine("Health: " + playerHealth);
-                Console.WriteLine("Armor: " + playerArmor);
-                Console.WriteLine("Mana: " + playerMana);
-                Console.WriteLine("Gold: " + playerGold);
-                Console.WriteLine("Player Role: " + playerRole);
-                Console.WriteLine("Magic damage: " + playerMagicDamage);
-                Console.WriteLine("Melee damage:" + playerMeleeDamage);
+                Console.WriteLine("Health: " + player1.health);
+                Console.WriteLine("Armor: " + player1.armor);
+                Console.WriteLine("Mana: " + player1.mana);
+                Console.WriteLine("Gold: " + player1.gold);
+                Console.WriteLine("Player Role: " + player1.role);
+                Console.WriteLine("Magic damage: " + player1.magicDamage);
+                Console.WriteLine("Melee damage:" + player1.meleeDamage);
                 Console.WriteLine();
                 Console.WriteLine("Oh one more thing i forgot to tell you. It is not that important but you do not have a weapon."); 
                 Console.WriteLine("You must have been an apprentice");
@@ -89,7 +106,7 @@ namespace HelloDungeon
            
 
             // Wizard Path
-            if(playerRole == "Wizard")
+            if(player1.role == "Wizard")
             {
 
                input = GetInput("As you enter the dungeon you run into your first option. There are two doors before you. Which do you choose.", "1 Left", "2 Right");
@@ -99,9 +116,9 @@ namespace HelloDungeon
                 if (input == 1)
                 {
                         Console.WriteLine("You find a old wooden staff. As you knock off the dust you feel stronger");
-                        playerMagicDamage += 5;
+                        player1.magicDamage += 5;
                         Console.WriteLine();
-                        Console.WriteLine("Magic damage: " + playerMagicDamage);
+                        Console.WriteLine("Magic damage: " + player1.magicDamage);
                         
                 }
                 else if (input == 2)
@@ -164,7 +181,7 @@ namespace HelloDungeon
 
 
             // Warrior Path
-            else if (playerRole == "Warrior")
+            else if (player1.role == "Warrior")
             {
                 Console.WriteLine("As you enter the dungeon you run into your first option. There are two doors before you. Which do you choose.");
                 Console.WriteLine("1 | 2");
