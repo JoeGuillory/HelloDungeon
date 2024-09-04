@@ -72,12 +72,12 @@ namespace HelloDungeon
             Weapon sword = new Weapon(12);
             Weapon greatsword = new Weapon(16);
             //Enemies
-            Enemy goblin = new Enemy("Goblin", 15, 3, 4);
+            Enemy goblin = new Enemy("Goblin", 15, 3, 7);
             
 
             //Player
            Player player1 = new Player("Scarletta", 50, 5, 3, 5, 5, "");
-            int defend = 5;
+            
            
           
             Console.WriteLine("Hello, " + player1.name);
@@ -94,7 +94,7 @@ namespace HelloDungeon
             if (input == 1)
             {
                     player1.role = "Warrior";
-                    player1.health += 4; 
+                    player1.health += 20; 
                     player1.mana -= 2;
                     player1.armor += 5;
                     player1.damage += 2;
@@ -102,7 +102,7 @@ namespace HelloDungeon
             else if (input == 2)
             {
                     player1.role = "Wizard";
-                    player1.health -= 3;
+                    player1.health -= 10;
                     player1.mana += 5;
                     player1.armor -= 2;
                     player1.damage += 6;
@@ -112,12 +112,12 @@ namespace HelloDungeon
             {
                 Console.WriteLine("Here are your new stats");
                 Console.WriteLine();
+                Console.WriteLine("Player Role: " + player1.role);
                 Console.WriteLine("Health: " + player1.health);
                 Console.WriteLine("Armor: " + player1.armor);
+                Console.WriteLine("Damage: " + player1.damage);
                 Console.WriteLine("Mana: " + player1.mana);
                 Console.WriteLine("Gold: " + player1.gold);
-                Console.WriteLine("Player Role: " + player1.role);
-                Console.WriteLine("Magic damage: " + player1.damage);
                 Console.WriteLine();
 
             }
@@ -125,12 +125,12 @@ namespace HelloDungeon
             {
                 Console.WriteLine("Here are your new stats");
                 Console.WriteLine();
+                Console.WriteLine("Player Role: " + player1.role);
                 Console.WriteLine("Health: " + player1.health);
                 Console.WriteLine("Armor: " + player1.armor);
+                Console.WriteLine("Damage: " + player1.damage);
                 Console.WriteLine("Mana: " + player1.mana);
                 Console.WriteLine("Gold: " + player1.gold);
-                Console.WriteLine("Player Role: " + player1.role);
-                Console.WriteLine("Magic damage: " + player1.damage);
                 Console.WriteLine();
                
             }
@@ -140,38 +140,12 @@ namespace HelloDungeon
             Console.Clear();
             Console.WriteLine("A goblin has appeared");
             //First encounter
-            Displaystats(player1);
+           
             Console.ReadKey();
+            Battleloop(player1, goblin);
             
-            while (goblin.health != 0 || goblin.health >= 0)
-            {
-                Attackrequest();
-                if (input == 1)
-                {
-                    goblin.health -= (player1.damage - goblin.armor);
-
-                }
-                else if (input == 2)
-                {
-                    player1.health -= (goblin.damage - player1.armor + defend);
-
-                }
-                else if (input == 3)
-                {
-                    player1.health += 5;
-
-                }
-
-
-
-
-
-
-
-            }
+           
             
-          
-
 
         }
         /// <summary>
@@ -293,14 +267,49 @@ namespace HelloDungeon
         /// Battlesystem that will allow you to fight a monster
         /// </summary>
         /// <returns></returns>
-        int Attackrequest()
+        Player Battleloop(Player player, Enemy monster)
         {
-            
+            Player battleresults = new Player("hehe",0,0,0,0,0,"none");
             int input;
-            input = GetInput("Select", "Attack", "Defend", "Heal");
+            int defend = 5;
+
+            
+
+            while (monster.health != 0 | monster.health !<= 0)
+            {
+                Displaystats(player);
+                Displaystats(monster);
+                Console.WriteLine();
 
 
-            return input;
+                input = GetInput("Select", "Attack", "Defend", "Heal");
+
+                if (input == 1)
+                {
+                    monster.health -= (player.damage - monster.armor);
+
+                }
+                else if(input == 2)
+                {
+                    player.health -= (monster.damage - player.armor - defend);
+                }
+                else if (input == 3)
+                {
+
+                    player.health += 7;
+
+                }
+                Console.Clear();
+                
+
+
+
+            }
+
+
+
+
+            return battleresults;
 
             
 
@@ -322,7 +331,22 @@ namespace HelloDungeon
             return nothing;
         }
 
-       
+        int Displaystats(Enemy monster)
+        {
+
+            int nothing = 0;
+            Console.WriteLine();
+            Console.WriteLine(monster.name);
+            Console.WriteLine("Health: " + monster.health);
+            Console.WriteLine("Armor: " + monster.armor);
+            Console.WriteLine("Magic damage: " + monster.damage);
+
+
+
+            return nothing;
+        }
+
+
 
     }
 }
