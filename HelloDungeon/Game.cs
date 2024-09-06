@@ -257,7 +257,7 @@ namespace HelloDungeon
         int Deathrequest()
         {
             int request;
-            request = GetInput("Would you like to try again", "Yes", "No");
+            request = GetInput("Would you like to try again", "Yes", "Yes");
 
             if (request == 1)
             {
@@ -266,7 +266,8 @@ namespace HelloDungeon
             }
             else if (request == 2)
             {
-
+                Console.Clear();
+                Run();
             }
             return request;
         }
