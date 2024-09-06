@@ -147,7 +147,7 @@ namespace HelloDungeon
             //First encounter
            
             Console.ReadKey();
-            Battleloop(player1, orc);
+            Battleloop(player1, goblin);
             Displaystats(player1);
             Console.ReadKey();
             
