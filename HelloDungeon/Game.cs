@@ -159,7 +159,7 @@ namespace HelloDungeon
             //First encounter
            
             Console.ReadKey();
-            player1 = Battleloop(player1, enemies[1]);
+            Battleloop(ref player1, enemies[1]);
             
             Displaystats(player1);
 
@@ -307,7 +307,7 @@ namespace HelloDungeon
         /// Battlesystem that will allow you to fight a monster
         /// </summary>
         /// <returns></returns>
-         Player Battleloop(Player player, Enemy monster)
+         Player Battleloop(ref Player player, Enemy monster)
         {
             
             int input;
