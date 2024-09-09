@@ -305,8 +305,8 @@ namespace HelloDungeon
             Player battleresults = new Player("hehe",0,0,0,0,0,"none");
             int input;
             int defend = 5;
-            int heal = 7;
-
+            int heal = 20;
+            float maxhealth = player.health;
 
 
             while (monster.health != 0)
@@ -314,7 +314,10 @@ namespace HelloDungeon
                 Displaystats(player);
                 Displaystats(monster);
                 Console.WriteLine();
+
+                /// Calculated player damage
                 float playerdamage = player.damage - monster.armor;
+                ///Calculated monster damage
                 float monsterdamage = monster.damage - player.armor;
 
                 input = GetInput("Select", "Attack", "Defend", "Heal");
@@ -344,8 +347,21 @@ namespace HelloDungeon
                 }
                 else if (input == 3)
                 {
+                    player.health -= monsterdamage;
 
-                    player.health += heal;
+                    if ((player.health + heal) >= player.health)
+                    {
+
+                        player.health = maxhealth;
+
+
+
+                    }
+                    else if ((player.health + heal) <= player.health)
+                    {
+
+                        player.health += heal;
+                    }
 
                 }
 
