@@ -39,14 +39,17 @@ namespace HelloDungeon
         /// <summary>
         /// Weapon blueprint
         /// </summary>
-        struct Weapon
+        struct Equipment
         {
+            public string name;
             public int damage;
-            public Weapon(int damage)
+            public Equipment(string name,int damage)
             {
+                this.name = name;
                 this.damage = damage;
             }
         }
+
         /// <summary>
         /// Enemy bluprint
         /// </summary>
@@ -66,13 +69,17 @@ namespace HelloDungeon
         }
         public void Run()
         {
-            // Weapons
-            Weapon wand = new Weapon(3);
-            Weapon shortStaff = new Weapon(9);
-            Weapon staff = new Weapon(12);
-            Weapon dagger = new Weapon(8);
-            Weapon sword = new Weapon(12);
-            Weapon greatsword = new Weapon(16);
+            // Weapons and armor
+            Equipment spellBook1 = new Equipment("Apprentic Spellbook", 3);
+            Equipment wand1 = new Equipment("Apprentice Wand",3);
+            Equipment wand2 = new Equipment("Wand", 3);
+            Equipment shortStaff1 = new Equipment("Shortstaff",9);
+            Equipment staff = new Equipment("Staff",12);
+            Equipment dagger = new Equipment("Dagger", 8);
+            Equipment sword = new Equipment("Sword",12);
+            Equipment greatSword = new Equipment("Greatsword", 16);
+            Equipment robe1 = new Equipment("Apprentice Robe", 4);
+            Equipment helmet = new Equipment("Helmet", 6);
             //Enemies
             Enemy goblin = new Enemy("Goblin", 15, 3, 7);
             Enemy orc = new Enemy("Orc", 40, 6, 12);
@@ -148,11 +155,28 @@ namespace HelloDungeon
             //First encounter
            
             Console.ReadKey();
-            Battleloop(player1, goblin);
-            Displaystats(player1);
-            Console.ReadKey();
+            player1 = Battleloop(player1, goblin);
             
-           
+            Displaystats(player1);
+
+            Console.ReadKey();
+            Console.Clear();
+            Console.WriteLine(player1.name + " have defeated your first enemy. Congrats. You deserve a reward.");
+            input = GetInput("Choose your reward", wand1.name, spellBook1.name);
+
+            if (input == 1)
+            {
+                player1.damage += wand1.damage;
+            }
+            else if (input == 2)
+            {
+
+                player1.damage += spellBook1.damage;
+            }
+
+            Console.Clear();
+            Console.WriteLine("Your new stats");
+            Displaystats(player1);
            
 
         }
