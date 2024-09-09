@@ -76,10 +76,11 @@ namespace HelloDungeon
             //Enemies
             Enemy goblin = new Enemy("Goblin", 15, 3, 7);
             Enemy orc = new Enemy("Orc", 40, 6, 12);
-            
+            Enemy imp = new Enemy("Imp", 25, 3, 9);
 
             //Player
-           Player player1 = new Player("Scarletta", 50, 5, 3, 5, 5, "");
+            Player player1 = new Player("Scarletta", 50, 5, 3, 5, 5, "");
+           
             
            
           
@@ -152,7 +153,7 @@ namespace HelloDungeon
             Console.ReadKey();
             
            
-            
+           
 
         }
         /// <summary>
@@ -275,7 +276,7 @@ namespace HelloDungeon
         /// Battlesystem that will allow you to fight a monster
         /// </summary>
         /// <returns></returns>
-        Player Battleloop(Player player, Enemy monster)
+         Player Battleloop(Player player, Enemy monster)
         {
             Player battleresults = new Player("hehe",0,0,0,0,0,"none");
             int input;
@@ -284,7 +285,7 @@ namespace HelloDungeon
 
 
 
-            while (monster.health != 0 || player.health != 0)
+            while (monster.health != 0)
             {
                 Displaystats(player);
                 Displaystats(monster);
@@ -337,7 +338,7 @@ namespace HelloDungeon
 
 
             } 
-                return player;
+                 return player;
 
         }
         /// <summary>
