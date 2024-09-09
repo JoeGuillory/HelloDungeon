@@ -87,7 +87,11 @@ namespace HelloDungeon
 
             //Player
             Player player1 = new Player("Scarletta", 50, 5, 3, 5, 5, "");
-           
+
+            Enemy[] enemies = new Enemy[3];
+            enemies[0] = goblin;
+            enemies[1] = orc;
+            enemies[2] = imp; 
             
            
           
@@ -155,13 +159,16 @@ namespace HelloDungeon
             //First encounter
            
             Console.ReadKey();
-            player1 = Battleloop(player1, goblin);
+            player1 = Battleloop(player1, enemies[1]);
             
             Displaystats(player1);
 
             Console.ReadKey();
             Console.Clear();
-            Console.WriteLine(player1.name + " have defeated your first enemy. Congrats. You deserve a reward.");
+            
+            //Iteam Choice
+            
+            Console.WriteLine(player1.name + ", you have defeated your first enemy. Congrats. You deserve a reward.");
             input = GetInput("Choose your reward", wand1.name, spellBook1.name);
 
             if (input == 1)
@@ -175,7 +182,7 @@ namespace HelloDungeon
             }
 
             Console.Clear();
-            Console.WriteLine("Your new stats");
+            Console.WriteLine("Here is your new stats");
             Displaystats(player1);
            
 
@@ -384,10 +391,10 @@ namespace HelloDungeon
         /// <summary>
         /// Displays Player stats
         /// </summary>
-        int Displaystats(Player player1)
+        void Displaystats(Player player1)
         {
             
-            int nothing = 0;
+            
             Console.WriteLine();
             Console.WriteLine("Health: " + player1.health);
             Console.WriteLine("Armor: " + player1.armor);
@@ -398,7 +405,7 @@ namespace HelloDungeon
 
 
 
-            return nothing;
+            return;
         }
         /// <summary>
         /// Displays Monsters stats
