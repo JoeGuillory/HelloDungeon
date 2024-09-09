@@ -80,18 +80,18 @@ namespace HelloDungeon
             Equipment greatSword = new Equipment("Greatsword", 16);
             Equipment robe1 = new Equipment("Apprentice Robe", 4);
             Equipment helmet = new Equipment("Helmet", 6);
-            //Enemies
+            //Enemies Weakest to Strongest
             Enemy goblin = new Enemy("Goblin", 15, 3, 7);
-            Enemy orc = new Enemy("Orc", 40, 6, 12);
             Enemy imp = new Enemy("Imp", 25, 3, 9);
+            Enemy orc = new Enemy("Orc", 40, 6, 12);
 
             //Player
             Player player1 = new Player("Scarletta", 50, 5, 3, 5, 5, "");
-
+            // Array of Enemies Weakest[0]
             Enemy[] enemies = new Enemy[3];
             enemies[0] = goblin;
-            enemies[1] = orc;
-            enemies[2] = imp; 
+            enemies[1] = imp; 
+            enemies[2] = orc;
             
            
           
@@ -309,7 +309,7 @@ namespace HelloDungeon
         /// <returns></returns>
          Player Battleloop(Player player, Enemy monster)
         {
-            Player battleresults = new Player("hehe",0,0,0,0,0,"none");
+            
             int input;
             int defend = 5;
             int heal = 20;
@@ -336,6 +336,10 @@ namespace HelloDungeon
                     {
                         monster.health = 0;
                     }
+                    if (monsterdamage <= 0)
+                    {
+                        monsterdamage = 0;
+                    }
                     player.health -= monsterdamage;
 
                 }
@@ -356,7 +360,7 @@ namespace HelloDungeon
                 {
                     player.health -= monsterdamage;
 
-                    if ((player.health + heal) >= player.health)
+                    if ((player.health + heal) <= player.health)
                     {
 
                         player.health = maxhealth;
@@ -364,7 +368,7 @@ namespace HelloDungeon
 
 
                     }
-                    else if ((player.health + heal) <= player.health)
+                    else if ((player.health + heal) >= player.health)
                     {
 
                         player.health += heal;
