@@ -169,16 +169,37 @@ namespace HelloDungeon
             //Iteam Choice
             
             Console.WriteLine(player1.name + ", you have defeated your first enemy. Congrats. You deserve a reward.");
-            input = GetInput("Choose your reward", wand1.name, spellBook1.name);
+            // checks if player is a wizard or warrior
+            if (player1.role == "Wizard")
+            {
+                input = GetInput("Choose your reward", wand1.name, spellBook1.name);
 
-            if (input == 1)
-            {
+                if (input == 1)
+                {
                 player1.damage += wand1.damage;
-            }
-            else if (input == 2)
-            {
+                }
+                else if (input == 2)
+                {
 
                 player1.damage += spellBook1.damage;
+                }
+
+            }
+            else if (player1.role == "Warrior")
+            {
+                input = GetInput("Choose your reward", sword.name, dagger.name);
+                if (input == 1)
+                {
+                    player1.damage += sword.damage;
+
+                }
+                else if (input == 2)
+                {
+                    player1.damage += dagger.damage;
+                }
+
+
+
             }
 
             Console.Clear();
@@ -427,6 +448,38 @@ namespace HelloDungeon
 
 
             return nothing;
+        }
+        void Path1()
+        {
+            /// fight two goblins
+            /// get two pieces of loot
+            /// strong orc at the end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
 
