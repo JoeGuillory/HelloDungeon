@@ -71,12 +71,12 @@ namespace HelloDungeon
         {
             // Weapons and armor
             Equipment spellBook1 = new Equipment("Apprentic Spellbook", 3);
-            Equipment wand1 = new Equipment("Apprentice Wand",3);
+            Equipment wand1 = new Equipment("Apprentice Wand", 3);
             Equipment wand2 = new Equipment("Wand", 3);
-            Equipment shortStaff1 = new Equipment("Shortstaff",9);
-            Equipment staff = new Equipment("Staff",12);
+            Equipment shortStaff1 = new Equipment("Shortstaff", 9);
+            Equipment staff = new Equipment("Staff", 12);
             Equipment dagger = new Equipment("Dagger", 8);
-            Equipment sword = new Equipment("Sword",12);
+            Equipment sword = new Equipment("Sword", 12);
             Equipment greatSword = new Equipment("Greatsword", 16);
             Equipment robe1 = new Equipment("Apprentice Robe", 4);
             Equipment helmet = new Equipment("Helmet", 6);
@@ -90,11 +90,11 @@ namespace HelloDungeon
             // Array of Enemies Weakest[0]
             Enemy[] enemies = new Enemy[3];
             enemies[0] = goblin;
-            enemies[1] = imp; 
+            enemies[1] = imp;
             enemies[2] = orc;
-            
-           
-          
+
+
+
             Console.WriteLine("Hello, " + player1.name);
             Console.WriteLine("Welcome to my dungeon!");
             Console.WriteLine();
@@ -104,25 +104,25 @@ namespace HelloDungeon
             Console.WriteLine("Damage: " + player1.damage);
             Console.WriteLine("Gold: " + player1.gold);
             Console.WriteLine();
-            
+
             int input = GetInput("Are you a warrior or a wizard?", "Warrior", "Wizard");
-            
-            
+
+
             if (input == 1)
             {
-                    player1.role = "Warrior";
-                    player1.health += 20; 
-                    player1.mana -= 2;
-                    player1.armor += 5;
-                    player1.damage += 2;
+                player1.role = "Warrior";
+                player1.health += 20;
+                player1.mana -= 2;
+                player1.armor += 5;
+                player1.damage += 2;
             }
             else if (input == 2)
             {
-                    player1.role = "Wizard";
-                    player1.health -= 10;
-                    player1.mana += 5;
-                    player1.armor -= 2;
-                    player1.damage += 6;
+                player1.role = "Wizard";
+                player1.health -= 10;
+                player1.mana += 5;
+                player1.armor -= 2;
+                player1.damage += 6;
             }
 
             if (player1.role == "Wizard")
@@ -149,7 +149,7 @@ namespace HelloDungeon
                 Console.WriteLine("Mana: " + player1.mana);
                 Console.WriteLine("Gold: " + player1.gold);
                 Console.WriteLine();
-               
+
             }
             Console.WriteLine();
             Console.WriteLine("As you walk through you are faced with your first battle");
@@ -157,12 +157,22 @@ namespace HelloDungeon
             Console.Clear();
             Console.WriteLine("A goblin has appeared");
             //First encounter
-           
+
             Console.ReadKey();
             Battleloop(ref player1, enemies[1]);
-            
             Displaystats(player1);
 
+            //Path choice
+            input = GetInput("Which path would you like to take", "1. Path one ", "2. Path two");
+            if (input == 1)
+            {
+                Path1(ref player1, enemies[0], enemies[0], enemies[2], robe1);
+            }
+            else if (input == 2)
+            {
+                Path1(ref player1, enemies[0], enemies[0], enemies[2], robe1);
+
+            }
             Console.ReadKey();
             Console.Clear();
             
@@ -449,15 +459,42 @@ namespace HelloDungeon
 
             return nothing;
         }
-        void Path1()
+        void Path1(ref Player player, Enemy enemy1 ,Enemy enemy2 ,Enemy enemy3, Equipment iteam)
         {
             /// fight two goblins
             /// get two pieces of loot
             /// strong orc at the end
+            Console.WriteLine("As you walk down the path you stumble across and iteam");
+            Console.WriteLine("You find " + iteam.name);
+            player.armor += iteam.damage;
+            Displaystats(player);
+            Console.ReadKey();
+            Console.Clear();
+            Console.WriteLine("As you continue you run into a foe");
 
+            Battleloop(ref player, enemy1);
 
+            int input = GetInput("Would you like to rest or upgrade", "1. Rest", "2. Upgade");
+            if(input == 1)
+            {
+                player.health += 20;
 
+            }
+            else if(input == 2)
+            {
+                player.damage += 5;
 
+            }
+            Displaystats(player);
+            Console.ReadKey();
+            Console.Clear();
+            Console.WriteLine("Another foe appears");
+            Battleloop(ref player, enemy2);
+
+            Displaystats(player);
+
+            Console.WriteLine("As you continue you spot the final foe. Can you defeat it?");
+            Battleloop(ref player, enemy3);
 
 
 
