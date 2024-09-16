@@ -93,14 +93,6 @@ namespace HelloDungeon
             enemies[1] = imp;
             enemies[2] = orc;
 
-            Console.WriteLine(Randomnumber());
-            Console.WriteLine(Randomnumber());
-            Console.WriteLine(Randomnumber());
-            Console.WriteLine(Randomnumber());
-            Console.WriteLine(Randomnumber());
-            Console.WriteLine(Randomnumber());
-            Console.WriteLine(Randomnumber());
-            Console.WriteLine(Randomnumber());
            
             
 
