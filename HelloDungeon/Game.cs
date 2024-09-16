@@ -93,7 +93,16 @@ namespace HelloDungeon
             enemies[1] = imp;
             enemies[2] = orc;
 
-
+            Console.WriteLine(Randomnumber());
+            Console.WriteLine(Randomnumber());
+            Console.WriteLine(Randomnumber());
+            Console.WriteLine(Randomnumber());
+            Console.WriteLine(Randomnumber());
+            Console.WriteLine(Randomnumber());
+            Console.WriteLine(Randomnumber());
+            Console.WriteLine(Randomnumber());
+           
+            
 
             Console.WriteLine("Hello, " + player1.name);
             Console.WriteLine("Welcome to my dungeon!");
@@ -458,6 +467,13 @@ namespace HelloDungeon
 
 
             return nothing;
+        }
+        int Randomnumber()
+        {
+            Random rnd = new Random();
+            int dice = rnd.Next(1, 100);
+
+            return dice;
         }
         void Path1(ref Player player, Enemy enemy1 ,Enemy enemy2 ,Enemy enemy3, Equipment iteam)
         {
