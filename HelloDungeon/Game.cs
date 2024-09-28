@@ -155,9 +155,12 @@ namespace HelloDungeon
             Console.WriteLine();
             Console.WriteLine("As you walk through you are faced with your first battle");
             Console.ReadKey();
+           
             Console.Clear();
-            Console.WriteLine("A goblin has appeared");
+
+
             //First encounter
+            Console.WriteLine("A goblin has appeared");
 
             Console.ReadKey();
             Battleloop(ref player1, enemies[0]);
