@@ -67,6 +67,11 @@ namespace HelloDungeon
                 this.damage = damage;
             }
         }
+       /*
+        * Main game funciton.
+        * 
+        * 
+        */
         public void Run()
         {
             // Weapons and armor
@@ -463,6 +468,7 @@ namespace HelloDungeon
 
             return nothing;
         }
+        // random number generator
         int Randomnumber()
         {
             Random rnd = new Random();
@@ -470,10 +476,10 @@ namespace HelloDungeon
 
             return dice;
         }
+        // Path for the player to choose
         void Path1(ref Player player, Enemy enemy1 ,Enemy enemy2 ,Enemy enemy3, Equipment iteam)
         {
             /// fight two goblins
-            /// get two pieces of loot
             /// strong orc at the end
             Console.WriteLine("As you walk down the path you stumble across and iteam");
             Console.WriteLine("You find " + iteam.name);
@@ -506,25 +512,6 @@ namespace HelloDungeon
 
             Console.WriteLine("As you continue you spot the final foe. Can you defeat it?");
             Battleloop(ref player, enemy3);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
