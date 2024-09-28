@@ -160,7 +160,7 @@ namespace HelloDungeon
             //First encounter
 
             Console.ReadKey();
-            Battleloop(ref player1, enemies[1]);
+            Battleloop(ref player1, enemies[0]);
             Displaystats(player1);
 
             //Path choice
